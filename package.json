@@ -1,7 +1,7 @@
 {
     "name": "zenstack-markdown",
     "displayName": "ZenStack Markdown Geneartor",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "description": "Generate markdown doc from ZModel schema file of ZenStack with Mermaid ERD",
     "main": "index.js",
     "repository": {
@@ -14,7 +14,7 @@
     },
     "scripts": {
         "clean": "rimraf dist",
-        "build": "npm run lint && npm run clean && tsc && copyfiles ./package.json ./README.md ./LICENSE dist",
+        "build": "npm run lint && npm run clean && tsc && copyfiles ./package.json ./README.md ./README-1.svg ./README-2.svg ./LICENSE dist",
         "dev":"zenstack generate",
         "watch": "tsc --watch",
         "lint": "eslint src --ext ts"

@@ -40,11 +40,11 @@ erDiagram
 erDiagram
 "User" {
   String id PK
-  String name  "nullable"
-  String email  "nullable"
-  DateTime emailVerified  "nullable"
+  String name  "?"
+  String email
+  DateTime emailVerified  "?"
   String password
-  String image  "nullable"
+  String image  "?"
 }
 "User" ||--o{ "Post": posts
 ```
