@@ -1,0 +1,9 @@
+node_modules
+dist
+.vercel
+.DS_Store
+.vscode/settings.json
+.env.local
+.npmcache
+coverage
+.build

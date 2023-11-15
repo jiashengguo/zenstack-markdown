@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "commonjs",
+        "lib": ["ESNext"],
+        "outDir": "dist",
+        "sourceMap": true,
+        "strict": true,
+        "noUnusedLocals": false,
+        "noImplicitReturns": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "baseUrl": ".",
+        "resolveJsonModule": true,
+        "declaration": true,
+        "experimentalDecorators": true,
+        "strictPropertyInitialization": false
+    },
+    "include": ["src/**/*.ts"]
+}
