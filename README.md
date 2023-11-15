@@ -2,6 +2,8 @@
 
 ZenStack Markdown Plugin is a standard plugin of [ZenStack](https://github.com/zenstackhq/zenstack) to generate markdown from the ZModel schema with Mermaid ERD diagram.
 
+Do you know the Mermaid's official SaaS product, [MermaidChart](https://www.mermaidchart.com/), is powered by ZenStack？😉
+
 ## Example
 
 -   [Post](#Post)
@@ -98,7 +100,7 @@ plugin zenstackmd {
 You can also disable it using env variable
 
 ```bash
-DISABLE_ZENSTACK-MD=true
+DISABLE_ZENSTACK_MD=true
 ```
 
 ## Local Development
@@ -128,3 +130,29 @@ plugin zenstackmd {
 ### Run Sample
 
 simply run `npm run dev` to see a more complicated result [schema.md](./schema.md) generated from [schema.zmodel](./schema.zmodel)
+
+## Show Mermaid Diagrams in Markdown
+
+-   GitHub
+
+    Supported by default
+
+-   VSCode
+
+    Install this extension [Markdown Preview Mermaid Support](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid)
+
+-   Other Unsupported Places
+
+    Install the mermaid-cli:
+
+    ```bash
+    npm install -g @mermaid-js/mermaid-cli
+    ```
+
+    Transform the markdown file with mermaid diagrams
+
+    ```bash
+    mmdc -i schema.md -o schema-svg.md
+    ```
+
+    The mermaid-cli will find the mermaid diagrams, create SVG files from them and refer to those in the markdown output.

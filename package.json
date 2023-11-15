@@ -1,12 +1,12 @@
 {
     "name": "zenstack-markdown",
     "displayName": "ZenStack Markdown Geneartor",
-    "version": "0.0.1",
-    "description": "ZModel markdown geneartor",
+    "version": "0.1.0",
+    "description": "Generate markdown doc from ZModel schema file of ZenStack with Mermaid ERD",
     "main": "index.js",
     "repository": {
         "type": "git",
-        "url": "https://github.com/zenstackhq/zenstack"
+        "url": "https://github.com/jiashengguo/zenstack-markdown"
     },
     "publishConfig": {
         "directory": "dist",

@@ -33,7 +33,7 @@ export default class PolicyGenerator {
                       .map(
                           (x) =>
                               `  - ${
-                                  x.decl.ref?.name == '@@deny' ? '❌' : '✅'
+                                  x.decl.ref?.name == '@@deny' ? '❌ ' : '✅ '
                               }${this.zModelGenerator.generateExpression(x.args[1].value)}`
                       )
                       .join('\n')

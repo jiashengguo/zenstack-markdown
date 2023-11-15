@@ -108,8 +108,8 @@ export default class ZModelCodeGenerator {
         const { left: isLeftParenthesis, right: isRightParenthesis } = this.isParenthesesNeededForBinaryExpr(ast);
 
         return `${isLeftParenthesis ? '(' : ''}${this.generateExpression(ast.left)}${isLeftParenthesis ? ')' : ''}${
-            this.binaryExprSpace
-        }${operator}${this.binaryExprSpace}${isRightParenthesis ? '(' : ''}${
+            isCollectionPredicate ? '' : this.binaryExprSpace
+        }${operator}${isCollectionPredicate ? '' : this.binaryExprSpace}${isRightParenthesis ? '(' : ''}${
             isCollectionPredicate ? `[${rightExpr}]` : rightExpr
         }${isRightParenthesis ? ')' : ''}`;
     }
