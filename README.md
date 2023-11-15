@@ -25,14 +25,14 @@ erDiagram
 ```
 
 -   CREATE
-    -   ✅auth() == author
+    -   ✅ auth() == author
 -   READ
-    -   ✅auth() == author
-    -   ✅auth() != null && published
+    -   ✅ auth() == author
+    -   ✅ auth() != null && published
 -   UPDATE
-    -   ✅auth() == author
+    -   ✅ auth() == author
 -   DELETE
-    -   ✅auth() == author
+    -   ✅ auth() == author
 
 ### User
 
@@ -50,13 +50,13 @@ erDiagram
 ```
 
 -   CREATE
-    -   ✅true
+    -   ✅ true
 -   READ
-    -   ✅true
+    -   ✅ true
 -   UPDATE
-    -   ✅auth() == this
+    -   ✅ auth() == this
 -   DELETE
-    -   ✅auth() == this
+    -   ✅ auth() == this
 
 ## Setup
 
