@@ -40,8 +40,6 @@ export async function aiGenerate(model: Model) {
         `,
     });
 
-    console.log(JSON.stringify(object, null, 2));
-
     const dataModels = model.declarations.filter((x) => isDataModel(x) && !x.isAbstract) as DataModel[];
 
     const modelChapter = dataModels
