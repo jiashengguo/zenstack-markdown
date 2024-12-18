@@ -24,15 +24,8 @@ erDiagram
 "Post" }o--|| "User": author
 ```
 
--   CREATE
-    -   ✅ auth() == author
--   READ
-    -   ✅ auth() == author
-    -   ✅ auth() != null && published
--   UPDATE
-    -   ✅ auth() == author
--   DELETE
-    -   ✅ auth() == author
+-   The author of the post can perform all operations on their posts.
+-   Any authenticated user can read published posts.
 
 ### User
 
@@ -49,14 +42,8 @@ erDiagram
 "User" ||--o{ "Post": posts
 ```
 
--   CREATE
-    -   ✅ true
--   READ
-    -   ✅ true
--   UPDATE
-    -   ✅ auth() == this
--   DELETE
-    -   ✅ auth() == this
+-   Anyone can create and read user profiles.
+-   Only the user themselves can update or delete their own profile.
 
 ## Setup
 
@@ -71,6 +58,9 @@ plugin zenstackmd {
     provider = 'zenstack-markdown'
 }
 ```
+
+> You could generate more meaningful doc using AI by obtaining a free Grok API Key from https://x.ai/ \
+> Just set the XAI_API_KEY in your .env file
 
 run zenstack generate
 

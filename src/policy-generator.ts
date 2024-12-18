@@ -1,6 +1,5 @@
-import { getLiteral } from '@zenstackhq/sdk';
+import { getLiteral, ZModelCodeGenerator } from '@zenstackhq/sdk';
 import { DataModel, DataModelAttribute } from '@zenstackhq/sdk/ast';
-import ZModelCodeGenerator from './zmodel-code-generator';
 
 export default class PolicyGenerator {
     public readonly CRUD = ['create', 'read', 'update', 'delete'];
@@ -32,9 +31,9 @@ export default class PolicyGenerator {
                       })
                       .map(
                           (x) =>
-                              `  - ${
-                                  x.decl.ref?.name == '@@deny' ? '❌ ' : '✅ '
-                              }${this.zModelGenerator.generateExpression(x.args[1].value)}`
+                              `  - ${x.decl.ref?.name == '@@deny' ? '❌ ' : '✅ '}${this.zModelGenerator.generate(
+                                  x.args[1].value
+                              )}`
                       )
                       .join('\n')
                 : [];

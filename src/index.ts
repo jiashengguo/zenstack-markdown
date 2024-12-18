@@ -1,18 +1,36 @@
 import type { DMMF } from '@prisma/generator-helper';
 import { PluginOptions, resolvePath } from '@zenstackhq/sdk';
 import { Model } from '@zenstackhq/sdk/ast';
-import { generate } from './generator';
 import fs from 'fs';
 import { writeFile } from 'fs/promises';
 import path from 'path';
+import { aiGenerate } from './ai-generator';
+import MermaidGenerator from './mermaid-generator';
+import PolicyGenerator from './policy-generator';
+import dotenv from 'dotenv';
+import { generate } from './generator';
+dotenv.config();
 
 export const name = 'ZenStack MarkDown';
 
+export const mermaidGenerator = new MermaidGenerator();
+export const policyGenerator = new PolicyGenerator();
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default async function run(model: Model, options: PluginOptions, dmmf: DMMF.Document) {
     if (process.env.DISABLE_ZENSTACK_MD === 'true' || options.disable) {
         return;
     }
-    const result = await generate(model, options, dmmf);
+
+    const isAiKeyProvided = process.env.XAI_API_KEY !== undefined;
+
+    if (!isAiKeyProvided) {
+        console.warn(
+            `\nYou could generate more meaningful doc by obtaining a free Grok API Key from https://x.ai/.\nJust set the XAI_API_KEY in your environment variables.`
+        );
+    }
+
+    const result = isAiKeyProvided ? await aiGenerate(model) : await generate(model);
 
     let outFile = (options.output as string) ?? './schema.md';
     outFile = resolvePath(outFile, options);

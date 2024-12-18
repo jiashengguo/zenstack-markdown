@@ -1,7 +1,7 @@
 {
     "name": "zenstack-markdown",
     "displayName": "ZenStack Markdown Geneartor",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "description": "Generate markdown doc from ZModel schema file of ZenStack with Mermaid ERD",
     "main": "index.js",
     "repository": {
@@ -15,28 +15,35 @@
     "scripts": {
         "clean": "rimraf dist",
         "build": "npm run lint && npm run clean && tsc && copyfiles ./package.json ./README.md ./README-1.svg ./README-2.svg ./LICENSE dist",
-        "dev":"zenstack generate",
+        "dev": "zenstack generate",
         "watch": "tsc --watch",
-        "lint": "eslint src --ext ts"
+        "lint": "eslint src --ext ts",
+        "test": "ts-node test.ts"
     },
     "author": "Jiasheng Guo",
     "license": "MIT",
     "dependencies": {
+        "@ai-sdk/anthropic": "^1.0.3",
+        "@ai-sdk/openai": "^1.0.7",
+        "@ai-sdk/xai": "^1.0.5",
         "@prisma/generator-helper": "^5.6.0",
-        "@zenstackhq/runtime": "^1.2.0",
-        "@zenstackhq/sdk": "^1.2.0"
+        "@zenstackhq/runtime": "^2.10.0",
+        "@zenstackhq/sdk": "^2.10.0",
+        "ai": "^4.0.12",
+        "dotenv": "^16.4.7",
+        "zod": "^3.23.8"
     },
     "devDependencies": {
+        "@prisma/client": "^5.6.0",
         "@types/node": "^18.0.0",
         "@typescript-eslint/eslint-plugin": "^5.54.0",
         "@typescript-eslint/parser": "^5.54.0",
         "copyfiles": "^2.4.1",
         "eslint": "^8.35.0",
+        "prisma": "^5.6.0",
         "rimraf": "^3.0.2",
         "ts-node": "^10.9.1",
         "typescript": "^4.9.5",
-        "zenstack": "^1.2.0",
-        "prisma": "^5.6.0",
-        "@prisma/client": "^5.6.0"
+        "zenstack": "^2.10.0"
     }
 }
