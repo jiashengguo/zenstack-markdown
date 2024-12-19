@@ -1,7 +1,7 @@
 {
     "name": "zenstack-markdown",
     "displayName": "ZenStack Markdown Geneartor",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "description": "Generate markdown doc from ZModel schema file of ZenStack with Mermaid ERD",
     "main": "index.js",
     "repository": {
@@ -23,6 +23,7 @@
     "author": "Jiasheng Guo",
     "license": "MIT",
     "dependencies": {
+        "@ai-sdk/openai": "^1.0.9",
         "@ai-sdk/xai": "^1.0.5",
         "@prisma/generator-helper": "^5.6.0",
         "@zenstackhq/runtime": "^2.10.0",

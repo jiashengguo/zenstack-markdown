@@ -22,11 +22,11 @@ export default async function run(model: Model, options: PluginOptions, dmmf: DM
         return;
     }
 
-    const isAiKeyProvided = process.env.XAI_API_KEY !== undefined;
+    const isAiKeyProvided = process.env.XAI_API_KEY !== undefined || process.env.OPENAI_API_KEY !== undefined;
 
     if (!isAiKeyProvided) {
         console.warn(
-            `\nYou could generate more meaningful doc by obtaining a free Grok API Key from https://x.ai/.\nJust set the XAI_API_KEY in your environment variables.`
+            `\nYou could generate more meaningful doc using AI\n- Setting OPENAI_API_KEY in .env\n- Or setting XAI_API_KEY by obtaining a free Grok API Key from https://x.ai`
         );
     }
 
