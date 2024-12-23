@@ -60,7 +60,7 @@ plugin zenstackmd {
 ```
 
 > You could generate more meaningful doc using AI \
-> \- Setting OPENAI_API_KEY of OpenAI in .env \
+> \- Setting OPENAI_API_KEY or ANTHROPIC_API_KEY .env \
 > \- Or setting XAI_API_KEY by obtaining a free Grok API Key from https://x.ai
 
 run zenstack generate

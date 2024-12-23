@@ -1,8 +1,9 @@
 import { ZModelCodeGenerator } from '@zenstackhq/sdk';
 import { DataModel, isDataModel, Model } from '@zenstackhq/sdk/ast';
 import { generateObject } from 'ai';
-import { xai } from '@ai-sdk/xai';
 import { openai } from '@ai-sdk/openai';
+import { anthropic } from '@ai-sdk/anthropic';
+import { xai } from '@ai-sdk/xai';
 import { z } from 'zod';
 import { mermaidGenerator } from '.';
 
@@ -10,7 +11,11 @@ export async function aiGenerate(model: Model) {
     const zModelGenerator = new ZModelCodeGenerator();
     const zmodel = zModelGenerator.generate(model);
 
-    const aiModel = process.env.OPENAI_API_KEY ? openai('gpt-4-turbo') : xai('grok-beta');
+    const aiModel = process.env.OPENAI_API_KEY
+        ? openai('gpt-4-turbo')
+        : process.env.ANTHROPIC_API_KEY
+        ? anthropic('claude-3-5-sonnet-20241022')
+        : xai('grok-beta');
 
     const { object } = await generateObject({
         model: aiModel,
