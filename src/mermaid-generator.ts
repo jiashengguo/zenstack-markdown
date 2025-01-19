@@ -1,5 +1,5 @@
 import { isForeignKeyField, isIdField, isRelationshipField } from '@zenstackhq/sdk';
-import { DataModel, DataModelField } from '@zenstackhq/sdk/ast';
+import { DataModel, DataModelField, isTypeDef, TypeDef } from '@zenstackhq/sdk/ast';
 
 export default class MermaidGenerator {
     generate(dataModel: DataModel) {
@@ -49,6 +49,34 @@ export default class MermaidGenerator {
             })
             .join('\n');
 
-        return ['```mermaid', 'erDiagram', `"${dataModel.name}" {\n${fields}\n}`, relations, '```'].join('\n');
+        const jsonFields = dataModel.fields
+            .filter((x) => isTypeDef(x.type.reference?.ref))
+            .map((x) => {
+                return this.generateTypeDef(x.type.reference?.ref as TypeDef, dataModel.name);
+            })
+            .join('\n');
+
+        return ['```mermaid', 'erDiagram', `"${dataModel.name}" {\n${fields}\n}`, relations, jsonFields, '```'].join(
+            '\n'
+        );
+    }
+
+    generateTypeDef(typeDef: TypeDef, relatedEntityName: string): string {
+        const fields = typeDef.fields
+            .map((x) => {
+                return [x.type.type || x.type.reference?.ref?.name, x.name, x.type.optional ? '"?"' : ''].join(' ');
+            })
+            .map((x) => `  ${x}`)
+            .join('\n');
+
+        const jsonFields = typeDef.fields
+            .filter((x) => isTypeDef(x.type.reference?.ref))
+            .map((x) => this.generateTypeDef(x.type.reference?.ref as TypeDef, typeDef.name))
+            .join('\n');
+
+        return [
+            `"${typeDef.name}" {\n${fields}\n} \n"${relatedEntityName}" ||--|| "${typeDef.name}": has`,
+            jsonFields,
+        ].join('\n');
     }
 }
