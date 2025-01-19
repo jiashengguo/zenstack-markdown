@@ -28,7 +28,7 @@ export default async function run(model: Model, options: PluginOptions, dmmf: DM
 
     if (!isAiKeyProvided) {
         console.warn(
-            `\nYou could generate more meaningful doc using AI\n- Setting OPENAI_API_KEY or ANTHROPIC_API_KEY in .env\n- Or setting XAI_API_KEY by obtaining a free Grok API Key from https://x.ai`
+            `\nYou could generate more meaningful doc using AI.\nSet OPENAI_API_KEY, ANTHROPIC_API_KEY or XAI_API_KEY in .env `
         );
     }
 
