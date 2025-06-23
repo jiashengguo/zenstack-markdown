@@ -18,7 +18,7 @@ export async function aiGenerate(model: Model) {
         : process.env.ANTHROPIC_API_KEY
         ? anthropic(process.env.ANTHROPIC_MODEL || 'claude-3-5-sonnet-20241022')
         : process.env.PERPLEXITY_API_KEY
-        ? anthropic(process.env.PERPLEXITY_MODEL || 'sonar-pro')
+        ? perplexity(process.env.PERPLEXITY_MODEL || 'sonar-pro')
         : xai(process.env.XAI_MODEL || 'grok-beta');
 
     const { object } = await generateObject({
