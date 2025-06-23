@@ -11,11 +11,15 @@ export async function aiGenerate(model: Model) {
     const zModelGenerator = new ZModelCodeGenerator();
     const zmodel = zModelGenerator.generate(model);
 
+    // OpenAI models: https://platform.openai.com/docs/models
+    // Perplexity models: https://docs.perplexity.ai/models/model-cards#search-models
     const aiModel = process.env.OPENAI_API_KEY
-        ? openai('gpt-4-turbo')
+        ? openai(process.env.OPENAI_MODEL || 'gpt-4.1-2025-04-14')
         : process.env.ANTHROPIC_API_KEY
-        ? anthropic('claude-3-5-sonnet-20241022')
-        : xai('grok-beta');
+        ? anthropic(process.env.ANTHROPIC_MODEL || 'claude-3-5-sonnet-20241022')
+        : process.env.PERPLEXITY_API_KEY
+        ? anthropic(process.env.PERPLEXITY_MODEL || 'sonar-pro')
+        : xai(process.env.XAI_MODEL || 'grok-beta');
 
     const { object } = await generateObject({
         model: aiModel,

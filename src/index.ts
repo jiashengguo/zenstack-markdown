@@ -22,13 +22,13 @@ export default async function run(model: Model, options: PluginOptions, dmmf: DM
         return;
     }
 
-    const isAiKeyProvided = ['XAI_API_KEY', 'OPENAI_API_KEY', 'ANTHROPIC_API_KEY'].some(
+    const isAiKeyProvided = ['XAI_API_KEY', 'OPENAI_API_KEY', 'ANTHROPIC_API_KEY', 'PERPLEXITY_API_KEY'].some(
         (key) => process.env[key] !== undefined
     );
 
     if (!isAiKeyProvided) {
         console.warn(
-            `\nYou could generate more meaningful doc using AI.\nSet OPENAI_API_KEY, ANTHROPIC_API_KEY or XAI_API_KEY in .env `
+            `\nYou could generate more meaningful doc using AI.\nSet OPENAI_API_KEY, ANTHROPIC_API_KEY, XAI_API_KEY or PERPLEXITY_API_KEY in .env `
         );
     }
 
