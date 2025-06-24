@@ -17,10 +17,10 @@ export async function aiGenerate(model: Model) {
     const aiModel = process.env.OPENAI_API_KEY
         ? openai(process.env.OPENAI_MODEL || 'gpt-4.1-2025-04-14')
         : process.env.ANTHROPIC_API_KEY
-        ? anthropic(process.env.ANTHROPIC_MODEL || 'claude-3-5-sonnet-20241022')
+        ? anthropic(process.env.ANTHROPIC_MODEL || 'claude-4-sonnet-20250514')
         : process.env.PERPLEXITY_API_KEY
         ? perplexity(process.env.PERPLEXITY_MODEL || 'sonar-pro')
-        : xai(process.env.XAI_MODEL || 'grok-beta');
+        : xai(process.env.XAI_MODEL || 'grok-3');
 
     const { object } = await generateObject({
         model: aiModel,
