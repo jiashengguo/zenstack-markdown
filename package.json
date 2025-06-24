@@ -25,6 +25,7 @@
     "dependencies": {
         "@ai-sdk/anthropic": "^1.0.6",
         "@ai-sdk/openai": "^1.0.9",
+        "@ai-sdk/perplexity": "^1.1.9",
         "@ai-sdk/xai": "^1.0.5",
         "@prisma/generator-helper": "^5.6.0",
         "@zenstackhq/runtime": "^2.11.4",

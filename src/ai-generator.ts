@@ -4,6 +4,7 @@ import { generateObject } from 'ai';
 import { openai } from '@ai-sdk/openai';
 import { anthropic } from '@ai-sdk/anthropic';
 import { xai } from '@ai-sdk/xai';
+import { perplexity } from '@ai-sdk/perplexity';
 import { z } from 'zod';
 import { mermaidGenerator } from '.';
 
@@ -11,11 +12,15 @@ export async function aiGenerate(model: Model) {
     const zModelGenerator = new ZModelCodeGenerator();
     const zmodel = zModelGenerator.generate(model);
 
+    // OpenAI models: https://platform.openai.com/docs/models
+    // Perplexity models: https://docs.perplexity.ai/models/model-cards#search-models
     const aiModel = process.env.OPENAI_API_KEY
-        ? openai('gpt-4-turbo')
+        ? openai(process.env.OPENAI_MODEL || 'gpt-4.1-2025-04-14')
         : process.env.ANTHROPIC_API_KEY
-        ? anthropic('claude-3-5-sonnet-20241022')
-        : xai('grok-beta');
+        ? anthropic(process.env.ANTHROPIC_MODEL || 'claude-4-sonnet-20250514')
+        : process.env.PERPLEXITY_API_KEY
+        ? perplexity(process.env.PERPLEXITY_MODEL || 'sonar-pro')
+        : xai(process.env.XAI_MODEL || 'grok-3');
 
     const { object } = await generateObject({
         model: aiModel,
