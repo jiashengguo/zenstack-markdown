@@ -56,7 +56,7 @@ export default class MermaidGenerator {
         const jsonFields = dataModel.fields
             .filter((x) => isTypeDef(x.type.reference?.ref))
             .map((x) => {
-                return this.generateTypeDef(x.type.reference?.ref as TypeDef, x.name, dataModel.name);
+                return this.generateTypeDef(x.type.reference?.ref as TypeDef, x.name, dataModel.name, new Set());
             })
             .join('\n');
 
@@ -80,7 +80,20 @@ export default class MermaidGenerator {
         ].join('\n');
     }
 
-    generateTypeDef(typeDef: TypeDef, fieldName: string, relatedEntityName: string): string {
+    generateTypeDef(
+        typeDef: TypeDef,
+        fieldName: string,
+        relatedEntityName: string,
+        visited: Set<string> = new Set()
+    ): string {
+        // Check if this TypeDef has already been visited to prevent infinite recursion
+        if (visited.has(typeDef.name)) {
+            return '';
+        }
+
+        // Add current TypeDef to visited set
+        visited.add(typeDef.name);
+
         const fields = typeDef.fields
             .filter((x) => !isTypeDef(x.type.reference?.ref))
             .map((x) => {
@@ -91,7 +104,7 @@ export default class MermaidGenerator {
 
         const jsonFields = typeDef.fields
             .filter((x) => isTypeDef(x.type.reference?.ref))
-            .map((x) => this.generateTypeDef(x.type.reference?.ref as TypeDef, x.name, typeDef.name))
+            .map((x) => this.generateTypeDef(x.type.reference?.ref as TypeDef, x.name, typeDef.name, visited))
             .join('\n');
 
         return [

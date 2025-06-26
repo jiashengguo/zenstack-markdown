@@ -15,7 +15,7 @@ export async function aiGenerate(model: Model) {
     // OpenAI models: https://platform.openai.com/docs/models
     // Perplexity models: https://docs.perplexity.ai/models/model-cards#search-models
     const aiModel = process.env.OPENAI_API_KEY
-        ? openai(process.env.OPENAI_MODEL || 'gpt-4.1-2025-04-14')
+        ? openai(process.env.OPENAI_MODEL || 'gpt-4.1')
         : process.env.ANTHROPIC_API_KEY
         ? anthropic(process.env.ANTHROPIC_MODEL || 'claude-4-sonnet-20250514')
         : process.env.PERPLEXITY_API_KEY
