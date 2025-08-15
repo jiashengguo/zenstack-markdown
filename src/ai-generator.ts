@@ -5,8 +5,10 @@ import { openai } from '@ai-sdk/openai';
 import { anthropic } from '@ai-sdk/anthropic';
 import { xai } from '@ai-sdk/xai';
 import { perplexity } from '@ai-sdk/perplexity';
+import { google } from '@ai-sdk/google';
 import { z } from 'zod';
 import { mermaidGenerator } from '.';
+
 
 export async function aiGenerate(model: Model) {
     const zModelGenerator = new ZModelCodeGenerator();
@@ -20,6 +22,8 @@ export async function aiGenerate(model: Model) {
         ? anthropic(process.env.ANTHROPIC_MODEL || 'claude-4-sonnet-20250514')
         : process.env.PERPLEXITY_API_KEY
         ? perplexity(process.env.PERPLEXITY_MODEL || 'sonar-pro')
+        : process.env.GOOGLE_GENERATIVE_AI_API_KEY
+        ? google(process.env.GOOGLE_GENERATIVE_MODEL || 'gemini-2.5-flash')
         : xai(process.env.XAI_MODEL || 'grok-3');
 
     const { object } = await generateObject({

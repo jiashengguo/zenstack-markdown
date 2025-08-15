@@ -66,6 +66,7 @@ plugin zenstackmd {
 > -   ANTHROPIC_API_KEY
 > -   PERPLEXITY_API_KEY
 > -   XAI_API_KEY
+> -   GOOGLE_GENERATIVE_AI_API_KEY
 
 then
 run zenstack generate
