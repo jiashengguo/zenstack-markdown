@@ -1,7 +1,7 @@
 {
     "name": "zenstack-markdown",
     "displayName": "ZenStack Markdown Geneartor",
-    "version": "0.6.0",
+    "version": "0.7.0",
     "description": "Generate markdown doc from ZModel schema file of ZenStack with Mermaid ERD",
     "main": "index.js",
     "repository": {
